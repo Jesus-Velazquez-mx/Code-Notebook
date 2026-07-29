@@ -1,0 +1,25 @@
+.contenedorFormulario {
+    display: flex;
+    flex-direction: column;
+    /* Esto es para que ocupe todo el viewport*/
+    height: 100vh;
+    width: 100vw;
+    /* Esto lo centra del ancho y alto*/
+    justify-content: center;
+    align-items: center;
+}
+
+.h1ContenedorFormulario {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-texto);
+    margin-bottom: 0.2rem;
+}
+
+
+.h2ContenedorFormulario {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-texto-secundario);
+    margin-bottom: 1.5rem;
+}

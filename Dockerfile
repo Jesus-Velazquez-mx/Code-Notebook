@@ -14,7 +14,7 @@ COPY backend/ ./
 
 # 5. Copiamos el frontend compilado (GitHub Actions lo descarga en frontend/dist)
 # Lo metemos en una carpeta "public" para que Express lo pueda mostrar
-COPY frontend/dist ./public
+COPY frontend/dist ./dist
 
 # 6. Exponemos el puerto en el que correrá el API de Express
 EXPOSE 3000

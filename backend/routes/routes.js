@@ -7,7 +7,7 @@ import usuarioController from '../controllers/usuarioController.js';
 import { verificarToken } from '../middlewares/validarToken.js'
 
 const { listarCategorias, crearCategoria, borrarCategoria, editarCategoria } = categoriaController;
-const { listarNotas, crearNota, borrarNota, editarNota } = notaController;
+const { listarNotas, listarUltimasNotas, listarTodasLasNotas, crearNota, borrarNota, editarNota } = notaController;
 const { iniciarSesion, registrar } = usuarioController;
 
 const router = Router();
@@ -18,18 +18,20 @@ router.post('/iniciarSesion', iniciarSesion);
 router.post('/registrar', registrar);
 
 /* Categorias */
-router.post('/listarCategorias', verificarToken, listarCategorias);
+router.get('/listarCategorias', verificarToken, listarCategorias);
 router.post('/crearCategoria', verificarToken, crearCategoria);
-router.post('/borrarCategoria', verificarToken, borrarCategoria);
+router.delete('/borrarCategoria', verificarToken, borrarCategoria);
 router.put('/editarCategoria', verificarToken, editarCategoria);
 
 
 /* Notas */
 router.post('/listarNotas', verificarToken, listarNotas);
-router.get('/listarUltimasNotas', verificarToken, listarNotas);
+router.get('/listarUltimasNotas', verificarToken, listarUltimasNotas);
+router.get('/listarTodasLasNotas', verificarToken, listarTodasLasNotas);
+
 
 router.post('/crearNota', verificarToken, crearNota);
-router.post('/borrarNota', verificarToken, borrarNota);
+router.delete('/borrarNota', verificarToken, borrarNota);
 router.put('/editarNota', verificarToken, editarNota)
 
 

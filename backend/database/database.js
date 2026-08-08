@@ -7,6 +7,13 @@ const db = new sqlite3.Database('./data/codeNotebook.sqlite', (err) => {
         console.error('Error abriendo la base de datos:', err.message);
     } else {
         console.log('Conectado a la base de datos SQLite.');
+        db.run("PRAGMA foreign_keys = ON;", (pragmaErr) => {
+            if (pragmaErr) {
+                console.error("Error activando las llaves foráneas:", pragmaErr.message);
+            } else {
+                console.log("Llaves foráneas activadas correctamente. El borrado en cascada ya funciona.");
+            }
+        });
     }
 });
 

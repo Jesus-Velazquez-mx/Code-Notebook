@@ -1,0 +1,62 @@
+.carouselWrapperRelative {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.carouselScroll {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+.carouselScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.carouselScroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.carouselItem {
+    flex: 0 0 auto;
+    height: auto;
+}
+
+.flechaFlotante {
+    position: absolute;
+    z-index: 10;
+    background-color: #7F5539;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.flechaFlotante:hover {
+    transform: scale(1.1);
+    background-color: #5C3A21;
+}
+
+.flechaIzquierda {
+    left: -20px;
+}
+
+.flechaDerecha {
+    right: -20px;
+}

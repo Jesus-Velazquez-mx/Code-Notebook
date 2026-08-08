@@ -33,13 +33,20 @@ const crearCategoria = (req, res) => {
 
     const sqlCrearCategoria = `INSERT INTO CATEGORIAS (nombre, usuario_id) VALUES (?,?)`
 
-    db.run(sqlCrearCategoria, [nombre, usuario_id], (err) => {
+    db.run(sqlCrearCategoria, [nombre, usuario_id], function (err) {
         if (err) {
             console.log("No se pudo insertar la categoría", err.message);
             return res.status(401).json({ error: "Error al crear la categoría" });
         } else {
-            /* Manda un mensaje de éxito */
-            res.status(201).json({ mensaje: "Categoría agregada correctamente" })
+            const categoriaCreada = {
+                id: this.lastID,
+                nombre,
+                usuario_id
+            };
+            res.status(201).json({
+                mensaje: "Categoría agregada correctamente",
+                categoria: categoriaCreada
+            });
         }
     })
 
@@ -48,20 +55,17 @@ const crearCategoria = (req, res) => {
 /* Para borrar categorías */
 const borrarCategoria = (req, res) => {
     const usuario_id = req.usuarioLogueado.id;
-    const { nombre } = req.body;
+    const { id } = req.body;
+    const sqlBorrarCategoria = `DELETE FROM CATEGORIAS WHERE id = ? AND usuario_id = ?`
 
-    const sqlBorrarCategoria = `DELETE FROM CATEGORIAS WHERE nombre = ? AND usuario_id = ?`
-
-    db.run(sqlBorrarCategoria, [nombre, usuario_id], (err) => {
+    db.run(sqlBorrarCategoria, [id, usuario_id], function (err) {
         if (err) {
             console.log("No se pudo borrar la categoría", err.message);
-            return res.status(401).json({ error: "Error al borrar la categoría" });
-        } else {
-            /* Manda un mensaje de éxito */
-            res.status(200).json({ mensaje: "Categoría borrada correctamente" })
+            return res.status(500).json({ error: "Error al intentar borrar la categoría" });
         }
-    })
-
+        /* Manda un mensaje de éxito */
+        res.status(200).json({ mensaje: "Categoría borrada correctamente" })
+    });
 }
 
 /* Para editar categorías */

@@ -13,7 +13,7 @@
     --color-primario-hover: #D05A45;
     --color-borde: #F4D5C2;
     --color-sombra-botones: rgba(0, 0, 0, 0.15);
-    --color-sombra-carta:
+    --color-fondo-carta: #F6DCCC;
 }
 
 * {
@@ -24,12 +24,14 @@
     font-family: 'DM Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
 }
 
 body {
     background-color: var(--color-fondo);
     color: var(--color-texto);
 }
+
 
 button {
     font-weight: bold;

@@ -32,7 +32,7 @@ const listarUltimasNotas = (req, res) => {
     const sqlVerNotas = `SELECT * FROM NOTAS WHERE usuario_id = ?
     ORDER BY fecha_creacion DESC LIMIT 15`;
 
-    db.all(sqlVerNotas, [usuario_id, categoria_id], (err, rows) => {
+    db.all(sqlVerNotas, [usuario_id], (err, rows) => {
         if (err) {
             console.log("No se encontraron las notas", err.message);
             return res.status(401).json({ error: "Notas no encontradas" });
@@ -41,6 +41,23 @@ const listarUltimasNotas = (req, res) => {
         }
     })
 }
+
+/* Para ver todas las notas */
+const listarTodasLasNotas = (req, res) => {
+    const usuario_id = req.usuarioLogueado.id;
+    const sqlVerNotas = `SELECT * FROM NOTAS WHERE usuario_id = ?
+    ORDER BY fecha_creacion DESC`;
+
+    db.all(sqlVerNotas, [usuario_id], (err, rows) => {
+        if (err) {
+            console.log("No se encontraron las notas", err.message);
+            return res.status(401).json({ error: "Notas no encontradas" });
+        } else {
+            res.status(200).json(rows);
+        }
+    })
+}
+
 
 /* Para crear una nota */
 const crearNota = (req, res) => {
@@ -55,12 +72,21 @@ const crearNota = (req, res) => {
     const sqlCrearNota = `INSERT INTO NOTAS (titulo, subtitulo, contenido,
        usuario_id, categoria_id) VALUES (?, ?, ?, ?, ?)`
 
-    db.run(sqlCrearNota, [titulo, subtitulo, contenido, usuario_id, categoria_id], (err) => {
+    db.run(sqlCrearNota, [titulo, subtitulo, contenido, usuario_id, categoria_id], function (err) {
         if (err) {
             console.log("No se pudo insertar la nota", err.message);
             return res.status(401).json({ error: "Error al crear la nota" });
         } else {
-            res.status(201).json({ mensaje: "Nota agregada correctamente" })
+            db.get(`SELECT * FROM NOTAS WHERE id = ?`, [this.lastID], (err, fila) => {
+                if (err) {
+                    console.log("Error al recuperar la nota insertada", err.message);
+                    return res.status(500).json({ error: "Error al recuperar la nota" });
+                }
+                res.status(201).json({
+                    mensaje: "Nota agregada correctamente",
+                    nota: fila
+                });
+            });
         }
     });
 }
@@ -108,4 +134,4 @@ const editarNota = (req, res) => {
     });
 }
 
-export default { listarNotas, crearNota, borrarNota, editarNota }
+export default { listarNotas, listarUltimasNotas, crearNota, borrarNota, editarNota, listarTodasLasNotas }

@@ -84,7 +84,7 @@ jobs:
     - name: Build & Push Docker image to Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: jesusvelazquezmx/livechat-service
+        image: jesusvelazquezmx/code-notebook
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile

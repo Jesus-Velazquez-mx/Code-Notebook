@@ -18,6 +18,7 @@ function LoginFormContainer({ isInicioSesion }) {
         contrasena: ''
     })
 
+    /* Inicio de sesión */
     const handleOnIniciarSesion = async (e) => {
         /* Evitar que se recargue la página */
         e.preventDefault();
@@ -39,6 +40,7 @@ function LoginFormContainer({ isInicioSesion }) {
         }
     }
 
+    /* Registro */
     const handleOnRegistrar = async (e) => {
         e.preventDefault();
         try {
@@ -53,6 +55,7 @@ function LoginFormContainer({ isInicioSesion }) {
         }
     }
 
+    /* Manejar los inputs del formulario */
     const handleInputChange = ({ target }) => {
         setUsuario({
             ...usuario,
@@ -60,6 +63,7 @@ function LoginFormContainer({ isInicioSesion }) {
         })
     }
 
+    /* Navegar a la pestaña de inicio de sesión */
     const irIniciarSesion = () => {
         navigate('/ingresar');
         setUsuario({
@@ -68,6 +72,7 @@ function LoginFormContainer({ isInicioSesion }) {
         });
     }
 
+    /* Navegar a la pestaña de registrar */
     const irRegistrar = () => {
         navigate('/registrar');
         setUsuario({

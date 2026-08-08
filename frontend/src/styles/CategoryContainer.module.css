@@ -1,0 +1,125 @@
+.libretaContenedor {
+    padding: 1rem;
+}
+
+.cabeceraPagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--color-borde);
+    padding-bottom: 1rem;
+}
+
+.tituloPagina {
+    color: var(--color-texto);
+    margin: 0;
+}
+
+.botonesAccion {
+    display: flex;
+    gap: 10px;
+}
+
+.botonPrimario {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px var(--color-sombra-botones);
+}
+
+.botonPrimario:hover {
+    background-color: var(--color-primario-hover);
+    transform: translateY(-1px);
+}
+
+.gridCategorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.columnaCategoria {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cabeceraCategoriaFila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+}
+
+.contador {
+    margin-left: 8px;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.listaNotas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.itemNotaFila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background-color: var(--color-fondo);
+    border-radius: 6px;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.itemNotaFila:hover {
+    background-color: var(--color-fondo-secundario);
+    border-left-color: var(--color-primario);
+    transform: translateX(4px);
+}
+
+.tituloNotaListado {
+    color: var(--color-texto);
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.notaVacia {
+    color: var(--color-texto-secundario);
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+.botonEliminarNota {
+    background: transparent;
+    border: none;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.botonEliminarNota:hover {
+    background-color: #ffdddd;
+    /* Fondo rojo suave */
+    color: red;
+}
